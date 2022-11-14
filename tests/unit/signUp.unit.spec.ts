@@ -1,4 +1,5 @@
 import { SignUpUseCase } from '@/modules/user/signUp/SignUpUseCase';
+import { SignUpErrors } from '@/modules/user/signUp/SignUpErrors';
 import { UserRepositorySpy } from '../helpers/mock/repo/userRepositorySpy';
 import { mockSignUpData } from '../helpers/mock/data/userMock';
 
@@ -21,16 +22,32 @@ describe('SignUp UseCase', () => {
 
   it('should validate if user exists before creating user', async () => {
     const { sut, userRepo } = makeSut();
+
     const data = mockSignUpData();
     await sut.execute(data);
+
     expect(userRepo.exists.mock.invocationCallOrder[0]).toBe(1);
     expect(userRepo.create.mock.invocationCallOrder[0]).toBe(2);
   });
 
   it('should validate if there is another user with same email and/or username', async () => {
     const { sut, userRepo } = makeSut();
+
     const data = mockSignUpData();
     await sut.execute(data);
+
     expect(userRepo.exists).toHaveBeenCalledWith(data.email, data.username);
+  });
+
+  it('should return an error if there is another user with sama email and/or username', async () => {
+    const { sut, userRepo } = makeSut();
+    userRepo.simulateUserAlreadyExists();
+
+    const data = mockSignUpData();
+    const result = await sut.execute(data);
+
+    expect(userRepo.exists).toBeCalled();
+    expect(userRepo.create).not.toBeCalled();
+    expect(result).toEqual(new SignUpErrors.EmailAndOrUsernameAlreadyInUser());
   });
 });
