@@ -7,6 +7,7 @@ export class SignUpUseCase {
   }
 
   public async execute() {
+    this.userRepo.exists();
     this.userRepo.create();
   }
 }
