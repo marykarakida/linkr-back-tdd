@@ -1,4 +1,5 @@
 import { IUserRepository } from '@/repository/IUserRepository';
+import { SignUpDTO } from './SignUpDto';
 
 export class SignUpUseCase {
   private userRepo;
@@ -6,8 +7,10 @@ export class SignUpUseCase {
     this.userRepo = userRepo;
   }
 
-  public async execute() {
-    this.userRepo.exists();
+  public async execute(dto: SignUpDTO) {
+    const { email, username } = dto;
+
+    this.userRepo.exists(email, username);
     this.userRepo.create();
   }
 }

@@ -1,4 +1,4 @@
 export interface IUserRepository {
   create: () => Promise<void>;
-  exists: () => Promise<boolean>;
+  exists: (email: string, name: string) => Promise<boolean>;
 }
