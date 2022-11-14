@@ -2,7 +2,7 @@ import express, { json } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
-import { loadEnv } from './config/env';
+import { loadEnv } from '@/config/env';
 
 loadEnv();
 
