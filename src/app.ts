@@ -12,8 +12,6 @@ app.use(cors());
 app.use(json());
 app.use(morgan('dev'));
 
-console.log('sss');
-
 app.get('/health', (_req, res) => res.json({ message: 'App is up and running!' }));
 
 export default app;
