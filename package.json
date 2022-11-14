@@ -6,10 +6,13 @@
   "scripts": {
     "build": "ttsc",
     "start": "node ./dist/server.js",
+    "prepare": "husky install",
+    "lint:staged": "lint-staged",
     "dev": "npm run dev:load-envs -- ts-node-dev -r transform-paths/register --respawn --transpile-only --exit-child ./src/server.ts",
     "dev:load-envs": "NODE_ENV=development",
     "test": "npm run test:load-envs -- jest --watchAll",
-    "test:load-envs": "NODE_ENV=test"
+    "test:load-envs": "NODE_ENV=test",
+    "test:staged": "npm run test:load-envs -- jest --findRelatedTests --silent"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +31,9 @@
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
     "jest": "^29.3.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.3",
     "ts-node-dev": "^2.0.0",
