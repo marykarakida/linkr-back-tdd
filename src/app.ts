@@ -1,8 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import { loadEnv } from './config/env';
+
+loadEnv();
 
 const app = express();
 
-loadEnv();
+app.use(cors());
 
 export default app;
