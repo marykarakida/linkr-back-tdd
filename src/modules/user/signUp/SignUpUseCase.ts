@@ -25,7 +25,9 @@ export class SignUpUseCase {
       return Result.fail<User>(userOrError.getErrorValue().toString());
     }
 
-    this.userRepo.create();
+    const user = userOrError.getValue();
+    this.userRepo.create(user);
+
     return Result.ok<void>();
   }
 }
