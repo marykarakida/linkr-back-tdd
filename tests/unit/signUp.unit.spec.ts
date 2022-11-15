@@ -1,7 +1,7 @@
 import { SignUpUseCase } from '@/modules/user/signUp/SignUpUseCase';
 import { SignUpErrors } from '@/modules/user/signUp/SignUpErrors';
 import { UserRepositorySpy } from '../helpers/mock/repo/userRepositorySpy';
-import { mockSignUpData } from '../helpers/mock/data/userMock';
+import { mockCreateUserData } from '../helpers/mock/data/userMock';
 
 type SutTypes = {
   sut: SignUpUseCase;
@@ -23,7 +23,7 @@ describe('SignUp UseCase', () => {
   it('should validate if user exists before creating user', async () => {
     const { sut, userRepo } = makeSut();
 
-    const data = mockSignUpData();
+    const data = mockCreateUserData();
     await sut.execute(data);
 
     expect(userRepo.exists.mock.invocationCallOrder[0]).toBe(1);
@@ -33,7 +33,7 @@ describe('SignUp UseCase', () => {
   it('should validate if there is another user with same email and/or username', async () => {
     const { sut, userRepo } = makeSut();
 
-    const data = mockSignUpData();
+    const data = mockCreateUserData();
     await sut.execute(data);
 
     expect(userRepo.exists).toHaveBeenCalledWith(data.email, data.username);
@@ -43,7 +43,7 @@ describe('SignUp UseCase', () => {
     const { sut, userRepo } = makeSut();
     userRepo.simulateUserAlreadyExists();
 
-    const data = mockSignUpData();
+    const data = mockCreateUserData();
     const result = await sut.execute(data);
 
     expect(userRepo.exists).toBeCalled();

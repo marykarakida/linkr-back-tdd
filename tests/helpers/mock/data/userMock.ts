@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export const mockSignUpData = () => ({
+export const mockCreateUserData = () => ({
   email: faker.internet.email(),
   password: faker.internet.password(),
   username: faker.internet.userName(),
