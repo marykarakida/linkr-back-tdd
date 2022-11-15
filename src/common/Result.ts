@@ -46,7 +46,7 @@ export class Result<T> {
     return new Result({ isSuccess: true, value });
   }
 
-  public static fail<U>(error?: string): Result<U> {
+  public static fail<U>(error?: string | string[]): Result<U> {
     return new Result({ isSuccess: false, error });
   }
 }

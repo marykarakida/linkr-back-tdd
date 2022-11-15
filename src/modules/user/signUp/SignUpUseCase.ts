@@ -1,9 +1,10 @@
-import { IUserRepository } from '@/repository/IUserRepository';
 import { Result } from '@/common/Result';
+import { User } from '@/entities/user';
+import { IUserRepository } from '@/repository/IUserRepository';
 import { SignUpDTO } from './SignUpDto';
 import { SignUpErrors } from './SignUpErrors';
 
-type SignUpResponse = SignUpErrors.UserAlreadyExistsError | Result<void>;
+type SignUpResponse = SignUpErrors.UserAlreadyExistsError | Result<any> | Result<void>;
 
 export class SignUpUseCase {
   private userRepo;
@@ -17,6 +18,11 @@ export class SignUpUseCase {
     const doesUserAlreadyExist = await this.userRepo.exists(email, username);
     if (doesUserAlreadyExist) {
       return new SignUpErrors.UserAlreadyExistsError();
+    }
+
+    const userOrError = User.create(dto);
+    if (userOrError.isFailure) {
+      return Result.fail<User>(userOrError.getErrorValue().toString());
     }
 
     this.userRepo.create();
