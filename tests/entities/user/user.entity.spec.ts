@@ -3,7 +3,7 @@ import { createUserSchema } from '@/entities/user/userSchema';
 import { mockCreateUserData } from '../../helpers/mock/data/userMock';
 
 describe('User Entity', () => {
-  it('should not create a User Entity if any field is an empty string', () => {
+  it('should ensure that data passed on to create User is validated', () => {
     const data = {
       email: '',
       password: '',
@@ -17,6 +17,19 @@ describe('User Entity', () => {
 
     expect(user).not.toBeInstanceOf(User);
     expect(createUserSchema.validate).toBeCalledWith(data, { abortEarly: false });
+  });
+
+  it('should not create a User Entity if any field is an empty string', () => {
+    const data = {
+      email: '',
+      password: '',
+      username: '',
+      pictureUrl: '',
+    };
+
+    const user = User.create(data);
+
+    expect(user).not.toBeInstanceOf(User);
     expect(user.getErrorValue()).toHaveLength(4);
   });
 
