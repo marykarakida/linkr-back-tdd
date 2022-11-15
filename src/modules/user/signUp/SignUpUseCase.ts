@@ -3,7 +3,7 @@ import { Result } from '@/common/Result';
 import { SignUpDTO } from './SignUpDto';
 import { SignUpErrors } from './SignUpErrors';
 
-type SignUpResponse = SignUpErrors.EmailAndOrUsernameAlreadyInUser | Result<void>;
+type SignUpResponse = SignUpErrors.UserAlreadyExistsError | Result<void>;
 
 export class SignUpUseCase {
   private userRepo;
@@ -14,9 +14,9 @@ export class SignUpUseCase {
   public async execute(dto: SignUpDTO): Promise<SignUpResponse> {
     const { email, username } = dto;
 
-    const isEmailOrUsernameAlreadyInUse = await this.userRepo.exists(email, username);
-    if (isEmailOrUsernameAlreadyInUse) {
-      return new SignUpErrors.EmailAndOrUsernameAlreadyInUser();
+    const doesUserAlreadyExist = await this.userRepo.exists(email, username);
+    if (doesUserAlreadyExist) {
+      return new SignUpErrors.UserAlreadyExistsError();
     }
 
     this.userRepo.create();

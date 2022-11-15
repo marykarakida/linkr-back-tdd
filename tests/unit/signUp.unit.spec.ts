@@ -48,6 +48,6 @@ describe('SignUp UseCase', () => {
 
     expect(userRepo.exists).toBeCalled();
     expect(userRepo.create).not.toBeCalled();
-    expect(result).toEqual(new SignUpErrors.EmailAndOrUsernameAlreadyInUser());
+    expect(result).toEqual(new SignUpErrors.UserAlreadyExistsError());
   });
 });
