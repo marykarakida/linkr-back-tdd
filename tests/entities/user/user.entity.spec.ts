@@ -41,4 +41,13 @@ describe('User Entity', () => {
     expect(user).not.toBeInstanceOf(User);
     expect(user.getErrorValue()).toHaveLength(1);
   });
+
+  it('should not create a User Entity if pictureUrl is not a valid uri', () => {
+    const data = mockCreateUserData();
+
+    const user = User.create({ ...data, pictureUrl: 'not a pictureUrl' });
+
+    expect(user).not.toBeInstanceOf(User);
+    expect(user.getErrorValue()).toHaveLength(1);
+  });
 });
