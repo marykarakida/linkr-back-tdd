@@ -35,5 +35,15 @@ describe('Auth routes', () => {
 
       expect(response.statusCode).toBe(409);
     });
+
+    it('should return 409 if the username is already taken', async () => {
+      const { data } = await createOneUserScenario();
+
+      const response = await server
+        .post('/auth/sign-up')
+        .send({ ...data, email: 'any_other_email@email.com' });
+
+      expect(response.statusCode).toBe(409);
+    });
   });
 });
