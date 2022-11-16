@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 
-import app, { init, close } from '@/app';
+import { app, init, close } from '@/infra/http/app';
 import { mockCreateUserData } from '../helpers/mock/data/userMock';
 import { cleanDb } from '../helpers/scenarios';
 import { createOneUserScenario } from '../helpers/scenarios/userScenario';

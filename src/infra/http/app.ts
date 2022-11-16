@@ -4,7 +4,7 @@ import morgan from 'morgan';
 
 import { loadEnv } from '@/config/env';
 import { connectDb, disconnectDb } from '@/config/prisma';
-import router from '@/routes';
+import router from './api/index';
 
 loadEnv();
 
@@ -27,4 +27,4 @@ export async function close() {
   await disconnectDb();
 }
 
-export default app;
+export { app };

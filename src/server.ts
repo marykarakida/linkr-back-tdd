@@ -1,4 +1,4 @@
-import app, { init } from './app';
+import { app, init } from './infra/http/app';
 
 const PORT = process.env.PORT || 4000;
 
