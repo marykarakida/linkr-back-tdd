@@ -26,6 +26,14 @@ describe('Auth routes', () => {
       expect(response.statusCode).toBe(201);
     });
 
+    it('should return 422 if request body is wrong', async () => {
+      const data = {};
+
+      const response = await server.post('/auth/sign-up').send(data);
+
+      expect(response.statusCode).toBe(422);
+    });
+
     it('should return 409 if there is another account using the same email', async () => {
       const { data } = await createOneUserScenario();
 

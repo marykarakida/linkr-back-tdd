@@ -1,9 +1,13 @@
+/* eslint-disable arrow-body-style */
 import { Router } from 'express';
 
+import { validateBody } from '@/middlewares/schemaMiddleware';
 import { signUpControllerFactory } from '@/modules/user/signUp';
 
 const authRouter = Router();
 
-authRouter.post('/sign-up', (req, res) => signUpControllerFactory().execute(req, res));
+authRouter.route('/sign-up').post(validateBody.validate('createUserSchema'), (req, res) => {
+  return signUpControllerFactory().execute(req, res);
+});
 
 export { authRouter };
