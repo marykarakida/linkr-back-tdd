@@ -18,13 +18,21 @@ app.get('/health', (_req, res) => res.json({ message: 'App is up and running!' }
 
 app.use(router);
 
-export function init() {
+function init() {
   connectDb();
   return Promise.resolve(app);
 }
 
-export async function close() {
+async function close() {
   await disconnectDb();
 }
 
-export { app };
+const PORT = process.env.PORT || 4000;
+
+init().then(() => {
+  app.listen(PORT, () => {
+    console.log('Server running on PORT', PORT);
+  });
+});
+
+export { app, init, close };
