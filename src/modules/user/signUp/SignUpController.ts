@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { BaseController } from '@/common/BaseController';
 import { SignUpDTO } from './SignUpDto';
 import { SignUpUseCase } from './SignUpUseCase';
+import { SignUpErrors } from './SignUpErrors';
 
 export class SignUpController extends BaseController {
   private useCase: SignUpUseCase;
@@ -27,6 +28,8 @@ export class SignUpController extends BaseController {
         const error = result.getErrorValue();
 
         switch (result.constructor) {
+          case SignUpErrors.UserAlreadyExistsError:
+            return this.conflict(res, error);
           default:
             return this.fail(res, error);
         }
