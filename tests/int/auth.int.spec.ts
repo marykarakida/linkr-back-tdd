@@ -2,12 +2,14 @@ import supertest from 'supertest';
 
 import app, { init, close } from '@/app';
 import { mockCreateUserData } from '../helpers/mock/data/userMock';
+import { cleanDb } from '../helpers/scenarios';
 
 const server = supertest(app);
 
 describe('Auth routes', () => {
   beforeEach(() => {
     init();
+    cleanDb();
   });
 
   afterAll(() => {
