@@ -1,4 +1,4 @@
-import { Result } from '@/common/Result';
+import { Result } from '@/core/logic/Result';
 import { User } from '@/entities/user';
 import { SignUpUseCase } from '@/modules/user/signUp/SignUpUseCase';
 import { SignUpErrors } from '@/modules/user/signUp/SignUpErrors';

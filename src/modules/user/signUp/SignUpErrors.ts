@@ -1,4 +1,4 @@
-import { Result } from '@/common/Result';
+import { Result } from '@/core/logic/Result';
 
 export namespace SignUpErrors {
   export class UserAlreadyExistsError extends Result<string> {

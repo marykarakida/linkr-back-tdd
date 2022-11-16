@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { BaseController } from '@/common/BaseController';
+import { BaseController } from '@/core/infra/BaseController';
 import { SignUpDTO } from './SignUpDto';
 import { SignUpUseCase } from './SignUpUseCase';
 import { SignUpErrors } from './SignUpErrors';

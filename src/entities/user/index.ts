@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { Result } from '@/common/Result';
+import { Result } from '@/core/logic/Result';
 import { Entity } from '../Entity';
 import { createUserSchema } from './userSchema';
 

@@ -1,4 +1,4 @@
-import { Result } from '@/common/Result';
+import { Result } from '@/core/logic/Result';
 import { User } from '@/entities/user';
 import { IUserRepository } from '@/repository/IUserRepository';
 import { SignUpDTO } from './SignUpDto';
