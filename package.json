@@ -16,7 +16,7 @@
     "test": "npm run test:load-envs -- jest --watchAll",
     "test:load-envs": "NODE_ENV=test",
     "test:migration:run": "dotenv -e .env.test prisma migrate deploy",
-    "test:migration:generate": "dotenv -e .env.test prisma migrate dev",
+    "test:migration:generate": "dotenv -e .env.test prisma generate && dotenv -e .env.test prisma migrate dev",
     "test:staged": "npm run test:load-envs -- jest --findRelatedTests --silent"
   },
   "keywords": [],

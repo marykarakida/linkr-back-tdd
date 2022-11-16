@@ -10,6 +10,22 @@ interface UserProps {
 }
 
 export class User extends Entity<UserProps> {
+  get email() {
+    return this.props.email;
+  }
+
+  get password() {
+    return this.props.password;
+  }
+
+  get username() {
+    return this.props.username;
+  }
+
+  get pictureUrl() {
+    return this.props.pictureUrl;
+  }
+
   private constructor(props: UserProps) {
     super(props);
   }

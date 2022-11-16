@@ -3,6 +3,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 import { loadEnv } from '@/config/env';
+import { connectDb, disconnectDb } from '@/config/prisma';
+import router from '@/routes';
 
 loadEnv();
 
@@ -13,5 +15,16 @@ app.use(json());
 app.use(morgan('dev'));
 
 app.get('/health', (_req, res) => res.json({ message: 'App is up and running!' }));
+
+app.use(router);
+
+export function init() {
+  connectDb();
+  return Promise.resolve(app);
+}
+
+export async function close() {
+  await disconnectDb();
+}
 
 export default app;
