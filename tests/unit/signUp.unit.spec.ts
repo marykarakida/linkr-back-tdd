@@ -1,7 +1,7 @@
 import { Result } from '@/core/logic/Result';
-import { User } from '@/entities/user';
-import { SignUpUseCase } from '@/modules/user/signUp/SignUpUseCase';
-import { SignUpErrors } from '@/modules/user/signUp/SignUpErrors';
+import { User } from '@/modules/user/domain';
+import { SignUpUseCase } from '@/modules/user/useCases/signUp/SignUpUseCase';
+import { SignUpErrors } from '@/modules/user/useCases/signUp/SignUpErrors';
 import { UserRepositorySpy } from '../helpers/mock/repo/userRepositorySpy';
 import { mockCreateUserData } from '../helpers/mock/data/userMock';
 

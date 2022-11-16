@@ -1,6 +1,6 @@
 import { Result } from '@/core/logic/Result';
-import { User } from '@/entities/user';
-import { IUserRepository } from '@/repository/IUserRepository';
+import { User } from '@/modules/user/domain';
+import { IUserRepository } from '../../repos/userRepository';
 import { SignUpDTO } from './SignUpDto';
 import { SignUpErrors } from './SignUpErrors';
 

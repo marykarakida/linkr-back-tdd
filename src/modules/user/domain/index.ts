@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Result } from '@/core/logic/Result';
-import { Entity } from '../../core/domain/Entity';
+import { Entity } from '../../../core/domain/Entity';
 import { createUserSchema } from './userSchema';
 
 interface UserProps {

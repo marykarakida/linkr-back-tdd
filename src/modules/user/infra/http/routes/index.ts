@@ -2,7 +2,7 @@
 import { Router } from 'express';
 
 import { validateBody } from '@/middlewares/schemaMiddleware';
-import { signUpControllerFactory } from '@/modules/user/signUp';
+import { signUpControllerFactory } from '@/modules/user/useCases/signUp';
 
 const authRouter = Router();
 

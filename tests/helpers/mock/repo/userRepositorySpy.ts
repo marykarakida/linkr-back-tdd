@@ -1,4 +1,4 @@
-import { IUserRepository } from '@/repository/IUserRepository';
+import { IUserRepository } from '@/modules/user/repos/userRepository';
 
 export class UserRepositorySpy implements IUserRepository {
   private existsResult: boolean = false;

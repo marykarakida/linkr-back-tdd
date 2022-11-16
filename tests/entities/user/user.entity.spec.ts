@@ -1,5 +1,5 @@
-import { User } from '@/entities/user';
-import { createUserSchema } from '@/entities/user/userSchema';
+import { User } from '@/modules/user/domain';
+import { createUserSchema } from '@/modules/user/domain/userSchema';
 import { mockCreateUserData } from '../../helpers/mock/data/userMock';
 
 describe('User Entity', () => {

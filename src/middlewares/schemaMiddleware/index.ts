@@ -1,4 +1,4 @@
-import { createUserSchema } from '@/entities/user/userSchema';
+import { createUserSchema } from '@/modules/user/domain/userSchema';
 import { SchemaMiddleware } from './schemaMiddleware';
 
 const bodySchemas = { createUserSchema };

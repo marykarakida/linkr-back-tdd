@@ -1,4 +1,4 @@
-import { UserRepository } from '@/repository/prisma/userRepository';
+import { UserRepository } from '../../repos/userRepository';
 import { SignUpUseCase } from './SignUpUseCase';
 import { SignUpController } from './SignUpController';
 

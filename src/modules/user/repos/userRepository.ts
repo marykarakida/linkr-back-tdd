@@ -1,7 +1,11 @@
 import { prisma } from '@/config/prisma';
-import { User } from '@/entities/user';
-import { UserMap } from '@/mappers/userMap';
-import { IUserRepository } from '../IUserRepository';
+import { User } from '@/modules/user/domain';
+import { UserMap } from '@/modules/user/mappers/userMap';
+
+export interface IUserRepository {
+  create: (user: User) => Promise<void>;
+  exists: (email: string, name: string) => Promise<boolean>;
+}
 
 export class UserRepository implements IUserRepository {
   async exists(email: string, username: string): Promise<boolean> {
